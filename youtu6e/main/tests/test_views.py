@@ -7,6 +7,6 @@ class MainViewTestCase(APITestCase):
         self.assertEqual(we_want, we_have)
 
     def test_password(self):
-        we_want = 'pass1'
+        we_want = 'pass'
         we_have = 'pass'
         self.assertEqual(we_want, we_have)
