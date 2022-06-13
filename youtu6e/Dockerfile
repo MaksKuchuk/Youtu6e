@@ -1,10 +1,9 @@
 FROM python
 RUN mkdir /code
-WORKDIR /code
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-COPY scripts/start*.sh /
 ADD . /code/
+WORKDIR /code
+RUN pip install -r /code/requirements.txt
+COPY scripts/start*.sh /
 
 EXPOSE 8000
 
