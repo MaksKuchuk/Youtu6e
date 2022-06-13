@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="create REST api">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_06_2022_17_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_06_2022_17_52__Changes_.xml" afterDir="false" />
+    <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="connected with Vue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/youtu6e/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/youtu6e/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/youtu6e/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/main/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/youtu6e/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/youtu6e/youtu6e/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/youtu6e/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/youtu6e/youtu6e/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/youtu6e/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652592131926</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="connected with Vue">
+      <created>1655109239453</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655109239453</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,6 +125,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="testsinit" />
     <MESSAGE value="testoftests" />
-    <option name="LAST_COMMIT_MESSAGE" value="testoftests" />
+    <MESSAGE value="connected with Vue" />
+    <option name="LAST_COMMIT_MESSAGE" value="connected with Vue" />
   </component>
 </project>
