@@ -2,7 +2,7 @@ FROM python
 RUN mkdir /code
 ADD . /code/
 WORKDIR /code
-RUN pip install -r /code/requirements.txt
+RUN pip3 install -r /code/youtu6e/requirements.txt
 COPY scripts/start*.sh /
 
 EXPOSE 8000
