@@ -1,7 +1,7 @@
 FROM python
 RUN mkdir /code
 WORKDIR /code
-ADD requirements.txt /code/
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY scripts/start*.sh /
 ADD . /code/
