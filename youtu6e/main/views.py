@@ -22,6 +22,22 @@ class VideosViewSet(ModelViewSet):
 
         return Videos.objects.all()[:amount]
 
+class FindVideoSet(ModelViewSet):
+    serializer_class = VideoSerializer
+
+    def get_queryset(self):
+        if 'find' in self.request.query_params.keys():
+            compare_string = str(self.request.query_params.get('find'))
+            videos = Videos.objects.filter(name__contains=compare_string)
+
+            if 'amount' in self.request.query_params.keys():
+                amount = int(self.request.query_params.get('amount'))
+                if amount < len(videos):
+                    videos = videos[:amount]
+
+            return videos
+
+
 
 
 
