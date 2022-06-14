@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between fixed z-30 w-full">
+  <header class="flex justify-between fixed z-30 w-full bg-white">
     <div class="lg:w-1/4 flex">
       <div class="flex items-center xl:w-64 xl:`bg-white` pl-4">
         <button class="mr-3 sm:ml-2 sm:mr-6">
