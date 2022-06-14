@@ -1,5 +1,5 @@
 """
-ASGI config for youtu6e project.
+ASGI config for 123123123 project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'youtu6e.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '123123123.settings')
 
 application = get_asgi_application()
