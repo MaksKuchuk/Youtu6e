@@ -58,8 +58,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'youtu6e.urls'
 
-CORS_ALLOW_ALL_ORIGINS = True
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,7 +83,11 @@ WSGI_APPLICATION = 'youtu6e.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'db.sqlite3',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': 'db',
+        'PORT': '3306,'
     }
 }
 
@@ -147,6 +149,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
