@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="connected with Vue">
+    <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="create tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/youtu6e/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/youtu6e/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/youtu6e/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/main/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/youtu6e/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/youtu6e/youtu6e/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/youtu6e/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/youtu6e/youtu6e/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtu6e/youtu6e/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
