@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-c-zsy-7a7v(gccfd(57mi3tv0leh9ql9kz&3=&8^xnj-&8c3c=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django']
 
 
 # Application definition
@@ -83,9 +83,13 @@ WSGI_APPLICATION = 'youtu6e.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': 'db',
+        'PORT': '3306,'
     }
 }
 
@@ -124,6 +128,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = 'static/'
 STATIC_URL = 'static/'
 
 # Default primary key field type
