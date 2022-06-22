@@ -61,11 +61,17 @@ export default {
   data() {
     return {
       videos: [],
+      searchInput: '',
     };
   },
   async created() {
-    const response = await fetch('http://localhost:8080/api/v1/mainvideos?amount=10');
+    const input = localStorage.getItem('searchInput');
+    this.searchInput = input ? input : '';
+    const request = 'http://localhost:8080/api/v1/findvideos/?find=' + this.searchInput;
+    const response = await fetch(request);
     this.videos = await response.json();
+    if (input)
+      localStorage.removeItem('searchInput');
   },
   components: {
     HeaderView,

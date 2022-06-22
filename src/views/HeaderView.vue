@@ -52,9 +52,12 @@
       class="hidden sm:flex items-center justify-end p-2 pl-8 md:pl-12 md:px-8 flex-1 ld:px-0 lg:w-1/2 max-w-screen-md">
       <div class="flex w-full h-full">
         <input type="text" placeholder="Поиск"
-               class="w-full h-9 px-3 shadow rounded-bl-sm rounded-tl-sm border border-gray-300 ml-2 focus:border-red-700 focus:outline-none">
+               class="w-full h-9 px-3 shadow rounded-bl-sm rounded-tl-sm border border-gray-300 ml-2 focus:border-red-700 focus:outline-none"
+               v-model="searchInput"
+               @keyup.enter="search">                                    
         <button
-          class=" flex items-center h-9 px-5 mr-2 shadow text-gray-700 bg-gray-100 border border-l-0 border-gray-300 rounded-tr-sm rounded-br-sm hover:bg-gray-300">
+          class=" flex items-center h-9 px-5 mr-2 shadow text-gray-700 bg-gray-100 border border-l-0 border-gray-300 rounded-tr-sm rounded-br-sm hover:bg-gray-300"
+          @click="search()">
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -90,7 +93,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    search() {      
+      if (this.searchInput != null) {
+        localStorage.setItem('searchInput', this.searchInput);
+        window.location.href = '/';
+      }
+    },
+  },
+
+  data() {
+    return {
+      searchInput: '',
+    };
+  },
+
+};
 </script>
 
 <style>
