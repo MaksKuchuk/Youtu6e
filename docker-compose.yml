@@ -24,7 +24,7 @@ services:
     image: nouchka/sqlite3
     ports:
       - '3306:3306'
-   env_file:
+    env_file:
       - "db.env"
     restart: always
     volumes:
