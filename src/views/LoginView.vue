@@ -38,13 +38,14 @@ export default {
 
   methods: {
     login() {      
-      const request = axios.post('http://localhost:8000/api/v1/auth/token/login/', this.formData)
+      axios.post('http://localhost:8000/api/v1/auth/token/login/', this.formData)
         .then(response => {
           console.log(response.data.auth_token)
-          localStorage.setItem('authToken', response.data.auth_token)
+          localStorage.setItem('authToken', response.data.auth_token)                   
         })
         .catch(error => console.log(error.request))
     },
+
   },
 };
 </script>

@@ -88,11 +88,14 @@
           Авторизация
         </button>
       </router-link>
+      <button @click="logout">Выйти</button>
     </div>
   </header>
 </template>
 
 <script>
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 export default {
   methods: {
     search() {      
@@ -101,6 +104,17 @@ export default {
         window.location.href = '/';
       }
     },
+
+    logout() {
+      const token = 'Token ' + localStorage.getItem('authToken')
+      const headers = {
+        'Authorization': token
+      }
+      axios.post('http://localhost:8000/api/v1/auth/token/logout/', {}, {headers})
+        .then(response => console.log('ok'))
+        .catch(error => console.log(error.response))
+      localStorage.removeItem('authToken')
+    }
   },
 
   data() {
