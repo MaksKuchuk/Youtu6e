@@ -41,9 +41,10 @@ export default {
       axios.post('http://localhost:8000/api/v1/auth/token/login/', this.formData)
         .then(response => {
           console.log(response.data.auth_token)
-          localStorage.setItem('authToken', response.data.auth_token)                   
+          localStorage.setItem('authToken', response.data.auth_token)
+          window.location.href = '/'                   
         })
-        .catch(error => console.log(error.request))
+        .catch(error => console.log(error.request))      
     },
 
   },

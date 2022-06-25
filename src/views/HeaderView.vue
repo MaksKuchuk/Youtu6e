@@ -111,9 +111,11 @@ export default {
         'Authorization': token
       }
       axios.post('http://localhost:8000/api/v1/auth/token/logout/', {}, {headers})
-        .then(response => console.log('ok'))
-        .catch(error => console.log(error.response))
-      localStorage.removeItem('authToken')
+        .then(response => {
+          console.log('ok')
+          localStorage.removeItem('authToken')
+        })
+        .catch(error => console.log(error.response))    
     }
   },
 

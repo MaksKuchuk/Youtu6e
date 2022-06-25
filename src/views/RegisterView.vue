@@ -48,8 +48,11 @@ export default {
 
   methods: {
     register() {      
-      axios.post('http://localhost:8080/api/v1/auth/users/', this.formData)
-        .then(response => console.log(response.data))
+      axios.post('http://localhost:8000/api/v1/auth/users/', this.formData)
+        .then(response => {
+          console.log(response.data)
+          window.location.href = '/login'
+        })
         .catch(error => console.log(error.request))
     },
   },
