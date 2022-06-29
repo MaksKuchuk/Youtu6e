@@ -11,6 +11,11 @@ class VideosViewSet(ModelViewSet):
     serializer_class = VideoSerializer
 
     def get_queryset(self):
+        if 'neid' in self.request.query_params.keys():
+            idd = int(self.request.query_params.get('neid'))
+
+            return Videos.objects.filter(~Q(pk=idd))
+
         if 'id' in self.request.query_params.keys():
             idd = int(self.request.query_params.get('id'))
 
