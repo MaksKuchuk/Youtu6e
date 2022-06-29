@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import dayjs from '@/utils/dayjs';
-import HeaderView from './HeaderView.vue';
-import AsideView from './AsideView.vue';
+import dayjs from '@/utils/dayjs'
+import HeaderView from './HeaderView.vue'
+import AsideView from './AsideView.vue'
 
 export default {
   methods: {
     format(data) {
-      return dayjs(data, 'hh:mm DD.MM.YYYY').fromNow(true);
+      return dayjs(data, 'hh:mm DD.MM.YYYY').fromNow(true)
     },
   },
   data() {
@@ -55,13 +55,13 @@ export default {
     };
   },
   async created() {
-    const input = localStorage.getItem('searchInput');
-    this.searchInput = input ? input : '';
-    const request = 'http://localhost:8080/api/v1/findvideos/?find=' + this.searchInput;
-    const response = await fetch(request);
-    this.videos = await response.json();
+    const input = localStorage.getItem('searchInput')
+    this.searchInput = input ? input : ''
+    const request = 'http://localhost:8000/api/v1/findvideos/?find=' + this.searchInput
+    const response = await fetch(request)
+    this.videos = await response.json()
     if (input)
-      localStorage.removeItem('searchInput');
+      localStorage.removeItem('searchInput')
   },
   components: {
     HeaderView,
