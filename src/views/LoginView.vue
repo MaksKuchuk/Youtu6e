@@ -14,6 +14,9 @@
         <div class="mt-6">          
           <button class="w-full inline-flex items-center justify-center px-4 py-2 bg-yellow-700 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-yellow-800 active:bg-red-700 focus:outline-none focus:border-red-700  disabled:opacity-25 transition">Войти</button>         
         </div>
+        <div class="text-center text-white">
+          <div v-show="loginError">Неверный логин или пароль</div>
+        </div>
         <div class="mt-6 text-center text-white">
           <label class="pr-2">Ещё нет аккаунта?</label>
           <router-link to="/register" class="underline">Зарегистрируйтесь</router-link>
@@ -31,8 +34,9 @@ export default {
     return {
       formData: {
         username: '',
-        password: '',   
+        password: '',
       },
+      loginError: false,
     }
   },
 
@@ -41,10 +45,15 @@ export default {
       axios.post('http://localhost:8000/api/v1/auth/token/login/', this.formData)
         .then(response => {
           console.log(response.data.auth_token)
+          this.loginError = false
           localStorage.setItem('authToken', response.data.auth_token)
           window.location.href = '/'                   
         })
-        .catch(error => console.log(error.request))      
+        .catch(error => {
+          console.log(error.request)
+          this.loginError = true
+          this.$forceUpdate()
+        })      
     },
 
   },

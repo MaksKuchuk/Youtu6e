@@ -19,6 +19,16 @@
           <label class="block mb-1 text-gray-200" for="password">Повторите пароль</label>
           <input v-model="passwordCheck" id="passwordCheck" type="password" name="passwordCheck" class="bg-yellow-50 py-2 px-3 border border-gray-300 focus:border-red-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full" />
         </div>
+        <div v-show="passwordMismatch" class="text-center text-white">
+          <div>Поля «пароль» и «повторите пароль» не совпадают!</div>
+        </div>
+        <div v-show="blankInputs" class="text-center text-white">
+          <div>Поля не могут быть пустыми!</div>
+        </div>
+        <div v-show="registrationFailed" class="text-center text-gray-200">
+          <div class="whitespace-pre-line">Не удалось зарегистрироваться, проверьте следующее:<br>1. E-mail должен быть действителен<br>2. Пароль не должен быть похож на никнейм или E-mail<br>3. Пароль должен состоять как минимум из 8 символов, не состоять только из цифр и не быть слишком простым (напр. qwerty123) 
+        </div>
+        </div>
         <div class="mt-6">          
           <button class="w-full inline-flex items-center justify-center px-4 py-2 bg-yellow-700 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-yellow-800 active:bg-red-700 focus:outline-none focus:border-red-700  disabled:opacity-25 transition"
                   type="submit">Зарегистрироваться</button>          
@@ -43,17 +53,40 @@ export default {
         password: '',   
       },
       passwordCheck: '',
+      passwordMismatch: false,
+      blankInputs: false,
+      registrationFailed: false,
     }
   },
 
   methods: {
-    register() {      
+    register() {
+      if (this.formData.username == ''||
+          this.formData.email == ''||
+          this.formData.password == ''||
+          this.passwordCheck == '') {
+            this.blankInputs = true;
+            this.$forceUpdate()
+            return
+      }
+        if (this.formData.password != this.passwordCheck){
+        this.passwordMismatch = true
+        this.$forceUpdate()
+        return
+      }
+      this.passwordMismatch = false
+      this.blankInputs = false
       axios.post('http://localhost:8000/api/v1/auth/users/', this.formData)
         .then(response => {
           console.log(response.data)
+          this.registrationFailed = false
           window.location.href = '/login'
         })
-        .catch(error => console.log(error.request))
+        .catch(error => {
+          console.log(error.request.responseText)
+          this.registrationFailed = true
+          this.$forceUpdate()
+        })
     },
   },
 };
