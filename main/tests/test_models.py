@@ -14,7 +14,7 @@ class MainModelTestCase(TestCase):
             'views': 10,
             'likes': 5,
             'dislikes': 3,
-            'uploadtime': 'uploadtime 1'
+            'upload_time': 'upload_time 1'
         }
 
         Videos.objects.create(**video)
@@ -67,10 +67,3 @@ class MainModelTestCase(TestCase):
         field_label = vid.__dict__[field]
 
         self.assertEquals(3, field_label)
-
-    def test_uploadtime(self):
-        field = 'uploadtime'
-        vid = Videos.objects.get()
-        field_label = vid.__dict__[field]
-
-        self.assertEquals('uploadtime 1', field_label)
