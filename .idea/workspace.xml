@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="add user in db">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0002_alter_videos_options_remove_videos_preview.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0003_alter_videos_options_videos_preview_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0004_videos_video.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0005_useraccount_remove_videos_uploadtime_videos_length_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0006_alter_videos_owner_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/tests/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/tests/test_models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656509247384</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add user in db">
+      <created>1656510533987</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656510533987</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
