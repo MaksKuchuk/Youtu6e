@@ -26,12 +26,12 @@
           <div>Поля не могут быть пустыми!</div>
         </div>
         <div v-show="registrationFailed" class="text-center text-gray-200">
-          <div class="whitespace-pre-line">Не удалось зарегистрироваться, проверьте следующее:<br>1. E-mail должен быть действителен<br>2. Пароль не должен быть похож на никнейм или E-mail<br>3. Пароль должен состоять как минимум из 8 символов, не состоять только из цифр и не быть слишком простым (напр. qwerty123) 
+          <div class="whitespace-pre-line">Не удалось зарегистрироваться, проверьте следующее:<br>1. E-mail должен быть действителен<br>2. Пароль не должен быть похож на никнейм или E-mail<br>3. Пароль должен состоять как минимум из 8 символов, не состоять только из цифр и не быть слишком простым (напр. qwerty123)
+          </div>
         </div>
-        </div>
-        <div class="mt-6">          
+        <div class="mt-6">
           <button class="w-full inline-flex items-center justify-center px-4 py-2 bg-yellow-700 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-yellow-800 active:bg-red-700 focus:outline-none focus:border-red-700  disabled:opacity-25 transition"
-                  type="submit">Зарегистрироваться</button>          
+                  type="submit">Зарегистрироваться</button>
         </div>
         <div class="mt-6 text-center text-white">
           <router-link to="/login" class="underline">Уже есть аккаунт? Войдите.</router-link>
@@ -50,7 +50,7 @@ export default {
       formData: {
         username: '',
         email: '',
-        password: '',   
+        password: '',
       },
       passwordCheck: '',
       passwordMismatch: false,
@@ -61,15 +61,15 @@ export default {
 
   methods: {
     register() {
-      if (this.formData.username == ''||
-          this.formData.email == ''||
-          this.formData.password == ''||
-          this.passwordCheck == '') {
-            this.blankInputs = true;
-            this.$forceUpdate()
-            return
+      if (this.formData.username === ''||
+        this.formData.email === ''||
+        this.formData.password === ''||
+        this.passwordCheck === '') {
+        this.blankInputs = true;
+        this.$forceUpdate()
+        return
       }
-        if (this.formData.password != this.passwordCheck){
+      if (this.formData.password !== this.passwordCheck){
         this.passwordMismatch = true
         this.$forceUpdate()
         return

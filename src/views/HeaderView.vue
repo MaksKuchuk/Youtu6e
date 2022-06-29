@@ -8,7 +8,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16"/>
           </svg>
         </button>
-        <a href=" ">
+        <router-link to="/">
           <svg width="50px" height="50px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1"
@@ -44,8 +44,7 @@
               </g>
             </g>
           </svg>
-
-        </a>
+        </router-link>
       </div>
     </div>
     <div
@@ -54,7 +53,7 @@
         <input type="text" placeholder="Поиск"
                class="w-full h-9 px-3 shadow rounded-bl-sm rounded-tl-sm border border-gray-300 ml-2 focus:border-red-700 focus:outline-none"
                v-model="searchInput"
-               @keyup.enter="search">                                    
+               @keyup.enter="search">
         <button
           class=" flex items-center h-9 px-5 mr-2 shadow text-gray-700 bg-gray-100 border border-l-0 border-gray-300 rounded-tr-sm rounded-br-sm hover:bg-gray-300"
           @click="search()">
@@ -90,27 +89,27 @@
         </button>
       </router-link>
       <button
-          class="flex items-center whitespace-nowrap px-2 py-1 mr-4 text-sm text-red-700 uppercase border border-red-700 rounded-sm hover:bg-pink-100"
-          v-if="authorized"
-          @click="logout">
-          <svg class="mr-2 w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
-               xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                  clip-rule="evenodd"></path>
-          </svg>
-          Выйти
-        </button>
+        class="flex items-center whitespace-nowrap px-2 py-1 mr-4 text-sm text-red-700 uppercase border border-red-700 rounded-sm hover:bg-pink-100"
+        v-if="authorized"
+        @click="logout">
+        <svg class="mr-2 w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                clip-rule="evenodd"></path>
+        </svg>
+        Выйти
+      </button>
     </div>
   </header>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 import VueAxios from 'vue-axios'
 export default {
   methods: {
-    search() {      
+    search() {
       if (this.searchInput != null) {
         localStorage.setItem('searchInput', this.searchInput);
         window.location.href = '/';
@@ -128,7 +127,7 @@ export default {
           localStorage.removeItem('authToken')
           window.location.reload()
         })
-        .catch(error => console.log(error.response))    
+        .catch(error => console.log(error.response))
     }
   },
 
@@ -139,7 +138,7 @@ export default {
     };
   },
 
-  async mounted() {    
+  async mounted() {
     this.authorized = localStorage.getItem('authToken') ? true : false
   },
 

@@ -11,28 +11,25 @@
             </svg>
             <span class="text-xs">Главная</span>
           </router-link>
-          <router-link to="/subscribers/:id" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
+          <router-link to="/channel/:id" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
             <svg class="w-6 h-6 mb-1 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
             </svg>
-            <span class="text-xs">Подписчики</span>
+            <span class="text-xs">Мой канал</span>
           </router-link>
-          <router-link to="/playlist/:id" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
+          <router-link to="/studio" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
             <svg class="w-6 h-6 mb-1 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1a1 1 0 11-2 0 1 1 0 012 0zM2 13a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2zm14 1a1 1 0 11-2 0 1 1 0 012 0z"></path>
             </svg>
-            <span class="text-xs">Плейлисты</span>
+            <span class="text-xs">Творческая студия</span>
           </router-link>
         </li>
       </ul>
     </section>
-    <!-- <section class="px-8 py-4 font-style: italic leading-5 border-b h-screen">
-      <span class="text-sm">Авторизуйтесь для дополнительных действий</span>
-    </section> -->
   </aside>
   <aside class="hidden xl:block w-64 min-h-screen overflow-auto fixed top-0 pt-12 bg-white z-20">
     <section class="py-2 border-b">
@@ -46,13 +43,13 @@
             </svg>
             <span>Главная</span>
           </router-link>
-          <router-link to="/subscribers/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+          <router-link to="/channel/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
             <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
             </svg>
-            <span>Подписчики</span>
+            <span>Мой канал</span>
           </router-link>
         </li>
       </ul>
@@ -60,19 +57,16 @@
     <section class="py-2 border-b">
       <ul>
         <li>
-          <router-link to="/playlist/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+          <router-link to="/studio" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
             <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1a1 1 0 11-2 0 1 1 0 012 0zM2 13a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2zm14 1a1 1 0 11-2 0 1 1 0 012 0z"></path>
             </svg>
-            <span>Плейлисты</span>
+            <span>Творческая студия</span>
           </router-link>
         </li>
       </ul>
-    </section>
-    <section class="px-8 py-4 font-style: italic leading-5 border-b">
-      <span class="text-sm">Авторизуйтесь для дополнительных действий</span>
     </section>
   </aside>
   <div class=" hidden fixed inset-0 bg-black bg-opacity-50 z-30">
@@ -131,13 +125,13 @@
               </svg>
               <span>Главная</span>
             </router-link>
-            <router-link to="/subscribers/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+            <router-link to="/channel/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
               <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
               </svg>
-              <span>Подписчики</span>
+              <span>Мой канал</span>
             </router-link>
           </li>
         </ul>
@@ -145,19 +139,16 @@
       <section class="py-2 border-b">
         <ul>
           <li>
-            <router-link to="/playlist/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+            <router-link to="/studio" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
               <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1a1 1 0 11-2 0 1 1 0 012 0zM2 13a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2zm14 1a1 1 0 11-2 0 1 1 0 012 0z"></path>
               </svg>
-              <span>Плейлисты</span>
+              <span>Творческая студия</span>
             </router-link>
           </li>
         </ul>
-      </section>
-      <section class="px-8 py-4 font-style: italic leading-5 border-b">
-        <span class="text-sm">Авторизуйтесь для дополнительных действий</span>
       </section>
     </aside>
   </div>

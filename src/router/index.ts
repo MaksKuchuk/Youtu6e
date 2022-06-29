@@ -7,6 +7,7 @@ import ChannelView from '../views/ChannelView.vue';
 import SubscribersView from '../views/SubscribersView.vue';
 import PlaylistView from '../views/PlaylistView.vue';
 import ChannelVideosView from '../views/CnannelVideosView.vue';
+import StudioView from '../views/StudioView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -48,6 +49,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/channel/videos/:id',
     name: 'videos_channel',
     component: ChannelVideosView,
+  },
+  {
+    path: '/studio',
+    name: 'studio',
+    component: StudioView,
   },
 ];
 
