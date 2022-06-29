@@ -9,7 +9,7 @@ class Videos(models.Model):
     likes = models.IntegerField()
     dislikes = models.IntegerField()
     length = models.CharField(max_length=30, null=True)
-    owner_id = models.IntegerField()
+    owner_id = models.IntegerField(blank=True)
     upload_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
