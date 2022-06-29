@@ -8,10 +8,23 @@ class Videos(models.Model):
     views = models.IntegerField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()
-    uploadtime = models.CharField(max_length=20)
+    length = models.CharField(max_length=30, null=True)
+    owner_id = models.IntegerField()
+    upload_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+class UserAccount(models.Model):
+    account_id = models.IntegerField()
+    nickname = models.CharField(max_length=255)
+    header = models.ImageField(upload_to='images/', null=True)
+    description = models.TextField(blank=True)
+    avatar = models.ImageField(upload_to='images/', null=True)
+    creation_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nickname
 
 
 
