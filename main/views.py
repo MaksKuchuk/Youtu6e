@@ -54,7 +54,7 @@ class GetUserSet(ModelViewSet):
             if 'getme' in self.request.query_params.keys():
                 user_data = UserAccount.objects.filter(account_id=self.request.user.id)
                 if len(user_data) == 0:
-                    UserAccount(account_id=self.request.user.id, nickname=self.request.user.username).save()
+                    UserAccount(account_id=self.request.user.id, nickname=self.request.user.username)
 
                     return UserAccount.objects.filter(account_id=self.request.user.id)
                 else:
@@ -62,10 +62,10 @@ class GetUserSet(ModelViewSet):
 
         if self.request.method == 'POST':
             if 'nickname' in self.request.data.keys():
-                UserAccount.objects.filter(account_id=self.request.user.id).update(nickname=self.request.data.get('nickname')).save()
+                UserAccount.objects.filter(account_id=self.request.user.id).update(nickname=self.request.data.get('nickname'))
 
             if 'description' in self.request.data.keys():
-                UserAccount.objects.filter(account_id=self.request.user.id).update(description=self.request.data.get('description')).save()
+                UserAccount.objects.filter(account_id=self.request.user.id).update(description=self.request.data.get('description'))
 
 
 # def get_video(request):
