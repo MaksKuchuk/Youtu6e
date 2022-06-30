@@ -125,7 +125,7 @@ export default {
         .then(response => {
           console.log('ok')
           localStorage.removeItem('authToken')
-          window.location.reload()
+          window.location.href = '/'
         })
         .catch(error => console.log(error.response))
     }
