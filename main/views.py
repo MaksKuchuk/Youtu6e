@@ -115,8 +115,8 @@ class VideoAddAPIView(APIView):
             preview_url = loadTo(preview_name, preview, folder)
             video_url = loadTo(video_name, video, folder)
 
-            avatar = UserAccount.objects.filter(pk=user_id)[0].avatar
-            author_name = UserAccount.objects.filter(pk=user_id)[0].nickname
+            avatar = UserAccount.objects.filter(account_id=user_id)[0].avatar
+            author_name = UserAccount.objects.filter(account_id=user_id)[0].nickname
 
             if 'description' in request.data.keys():
                 Videos.objects.create(name=name, preview=preview_url, video=video_url,
