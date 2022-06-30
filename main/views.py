@@ -106,6 +106,9 @@ class VideoAddAPIView(APIView):
         user_id = request.user.id
         folder = '\images'
 
+        if UserAccount.objects.filter(account_id=request.user.id).count() == 0:
+            UserAccount.objects.create(account_id=request.user.id, nickname=request.user.username)
+
         if 'name' in request.data.keys() and 'preview' in request.data.keys() and 'video' in request.data.keys():
             name = request.data['name']
             preview_name = request.data['preview']
