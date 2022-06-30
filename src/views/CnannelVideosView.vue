@@ -76,7 +76,7 @@ export default {
     };
   },
   async created() {
-    const response = await fetch('http://localhost:8080/api/v1/mainvideos/?getuservideo')
+    const response = await fetch('http://localhost:8080/api/v1/mainvideos/?getuservideo=1')
     this.videos = await response.json()
 
     const token = 'Token ' + localStorage.getItem('authToken')

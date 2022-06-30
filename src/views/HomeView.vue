@@ -25,6 +25,7 @@
         </div>
       </div>
     </div>
+
   </main>
 </template>
 
@@ -33,6 +34,17 @@ import dayjs from '@/utils/dayjs';
 import HeaderView from './HeaderView.vue';
 import AsideView from './AsideView.vue';
 
+function getTime(linktovideo) {
+    x = document.createElement("video");
+    x.src = linktovideo;
+    sec = x.duration;
+
+    hours = sec / 3600 % 24;
+    minutes = sec / 60 % 60;
+    seconds = sec % 60;
+
+    return num(hours) + ":" + num(minutes) + ":" + num(seconds);
+}
 export default {
   methods: {
     format(data) {
