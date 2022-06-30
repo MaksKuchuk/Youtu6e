@@ -11,7 +11,7 @@
             <div class="flex items-center">
               <span class="text-2xl text-gray-700">{{this.info.nickname}}</span>
             </div>
-            <div class="text-sm">5 подписчиков</div>
+            <div class="text-sm"></div>
           </div>
         </div>
         <button class="bg-red-700 text-white text-xs uppercase mt-2 xl:mt-0 py-2 px-4 rounded-sm" >Подписаться</button>

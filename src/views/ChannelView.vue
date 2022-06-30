@@ -9,9 +9,14 @@
           <div class="w-16 h-16 rounded-full mr-4 hidden sm:inline" :style="{backgroundImage: `url(${this.info.avatar})`}"></div>
           <div>
             <div class="flex items-center">
-              <span class="text-2xl text-gray-700">{{this.info.nickname}}</span>
+              <textarea id="nicknameid" class="text-2xl text-gray-700" :disabled="canEditNick">{{this.info.nickname}}</textarea>
+              <button @click="changeChannelNick">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </button>
             </div>
-            <div class="text-sm">5 подписчиков</div>
+            <div class="text-sm"></div>
           </div>
         </div>
         <button class="bg-red-700 text-white text-xs uppercase mt-2 xl:mt-0 py-2 px-4 rounded-sm" >Подписаться</button>
@@ -19,7 +24,6 @@
       <div class="flex pb-5">
         <nav class="mt-2">
           <router-link to="/channel/:id" class="px-6 uppercase text-xs font-medium text-gray-500 hover:text-gray-900 py-2">О канале</router-link>
-
         </nav>
         <nav class="mt-2">
           <router-link to="/channel/videos/:id" class="px-6 uppercase text-xs font-medium text-gray-500 hover:text-gray-900 py-2">Видео</router-link>
@@ -33,7 +37,7 @@
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
         </svg>
       </button>
-      <textarea id="description" class="pl-3 ml-3 w-full border-gray-300 border resize-none" :disabled="canEdit">{{this.info.description}}</textarea>
+      <textarea id="description"  class="w-full h-full p-3 font-medium border border-solid border-gray-300 focus:border-gray-600 focus:outline-none resize-none" :disabled="canEdit">{{this.info.description}}</textarea>
     </div>
   </main>
   <main class="hidden md:ml-24 xl:ml-64 pt-20 px-5 pb-5 grid max-w-screen-2xl m-auto">
@@ -60,28 +64,50 @@ export default {
         type: Boolean,
         default: false,
       },
+      canEditNick: {
+        type: Boolean,
+        default: false,
+      },
       info: [],
       channelDescription: '',
     };
   },
   methods: {
    async changeChannelInfo() {
-      if(!this.canEdit) {
-        this.channelDescription = document.getElementById('description').value
-        const headers = {
-          'Authorization': 'Token ' + localStorage.getItem('authToken')
-        }
-        await axios.post('http://localhost:8000/api/v1/userinfo/', {description: this.channelDescription}, {headers})
-          .then(response => {
-            console.log(response)
-          })
-          .catch(error => {
-            console.log(error.response)
-          })
-      }
-      this.canEdit = !this.canEdit;
-    },
-  },
+     if(!this.canEdit) {
+       this.channelDescription = document.getElementById('description').value
+       const headers = {
+         'Authorization': 'Token ' + localStorage.getItem('authToken')
+       }
+       await axios.post('http://localhost:8000/api/v1/userinfo/', {description: this.channelDescription}, {headers})
+         .then(response => {
+           console.log(response)
+         })
+         .catch(error => {
+           console.log(error.response)
+         })
+     }
+     this.canEdit = !this.canEdit;
+   },
+
+   async changeChannelNick() {
+     if(!this.canEditNick) {
+       this.channelNick = document.getElementById('nicknameid').value
+       const headers = {
+         'Authorization': 'Token ' + localStorage.getItem('authToken')
+       }
+       await axios.post('http://localhost:8000/api/v1/userinfo/', {nickname: this.channelNick}, {headers})
+         .then(response => {
+           console.log(response)
+         })
+         .catch(error => {
+           console.log(error.response)
+         })
+     }
+     this.canEditNick = !this.canEditNick;
+   },
+
+ },
 
   async created() {    
     const token = 'Token ' + localStorage.getItem('authToken')
@@ -89,8 +115,7 @@ export default {
       'Authorization': token
     }
     await axios.get('http://localhost:8080/api/v1/userinfo/?getme=1', {headers})
-      .then(response => {       
-        console.log(response.data[0])
+      .then(response => {
         this.info = response.data[0]
         if (!this.info.header)
           this.info.header = require('../assets/image.jpg')
@@ -102,10 +127,15 @@ export default {
       })
   }
 };
+
 </script>
 
 <style scoped>
 .router-link-active{
   @apply border-b-2 border-gray-300 text-gray-900;
+}
+
+#description {
+  height: 250px;
 }
 </style>

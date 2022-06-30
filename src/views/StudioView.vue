@@ -2,6 +2,31 @@
   <HeaderView/>
   <AsideView/>
   <main class="md:ml-24 xl:ml-64 pt-20 px-5 pb-5 grid max-w-screen-2xl m-auto">
+    <form class="max-w-screen-2xl">
+      <div class="flex">
+        <div class="w-1/2">
+          <div class="pt-3 pb-3 pl-2 font-bold uppercase bg-red-100 rounded">Изменить аватарку и шапку канала</div>
+          <div class="flex pt-5">
+            <div class="flex justify-center pr-5">
+              <div class="mb-3 w-96 pl-5">
+                <label class="form-label inline-block mb-2 text-gray-700 text-xs font-bold uppercase">Выберите аватарку</label>
+                <input class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="" type="file" ref="avatar1" @change="selectAvatar">
+              </div>
+            </div>
+            <button type="button" class="inline-block px-6 border-2 border-pink-400 text-pink-400 font-medium text-xs leading-tight uppercase rounded-xl hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0" @click="changeChannelAvatar">Применить</button>
+          </div>
+          <div class="pt-5 flex">
+            <div class="flex flex-col">
+              <div class="mb-3 w-96">
+                <label class="form-label inline-block mb-2 text-gray-700 text-xs font-bold uppercase">Выберите шапку</label>
+                <input class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="" type="file" ref="header1" @change="selectHeader">
+              </div>
+              <button type="button" class="inline-block pt-5 pb-5 px-10 border-2 border-pink-400 text-pink-400 font-medium text-xs leading-tight uppercase rounded-xl hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0" @click="changeChannelHeader">Применить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
     <form class="max-w-screen-2xl pt-7">
       <div class="font-bold uppercase pt-3 pb-3 pl-2 bg-red-100 rounded w-1/2">Добавить видео</div>
       <div class="flex pb-5 pt-5">
@@ -66,6 +91,14 @@ export default {
   },
 
   methods: {
+    selectHeader() {
+      this.header = this.$refs.header1.files.item(0)
+    },
+
+    selectAvatar() {
+      this.avatar = this.$refs.avatar1.files.item(0)
+    },
+
     selectFile() {
       this.document = this.$refs.file.files.item(0)
     },
@@ -94,7 +127,39 @@ export default {
         .catch(error => {
           console.log(error.response)
         })
-    }
+    },
+
+    async changeChannelAvatar() {
+      if (this.avatar) {
+        const headers = {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': 'Token ' + localStorage.getItem('authToken')
+        }
+        await axios.post('http://localhost:8000/api/v1/userinfo/', {avatar: this.avatar}, {headers})
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error.response)
+          })
+        }
+    },
+
+    async changeChannelHeader() {
+      if (this.header) {
+        const headers = {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': 'Token ' + localStorage.getItem('authToken')
+        }
+        await axios.post('http://localhost:8000/api/v1/userinfo/', {header: this.header}, {headers})
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error.response)
+          })
+      }
+    },
   },
 
 };
