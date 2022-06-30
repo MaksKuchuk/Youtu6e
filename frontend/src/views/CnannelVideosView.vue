@@ -86,6 +86,7 @@ export default {
       .then(response => {
         this.videos = response.data
         for (var i = 0; i < this.videos.length; i++) {
+          this.videos[i].preview = 'http://localhost:8000' + this.videos[i].preview
           if (!this.videos[i].avatar)
             this.videos[i].avatar = require('../assets/bg.jpg')
         }
