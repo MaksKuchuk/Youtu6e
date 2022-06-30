@@ -1,5 +1,7 @@
-from django.http import JsonResponse
+from django.contrib.auth.decorators import permission_required
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Videos, UserAccount
 from rest_framework.viewsets import ModelViewSet
@@ -18,8 +20,11 @@ class VideosViewSet(ModelViewSet):
 
         if 'id' in self.request.query_params.keys():
             idd = int(self.request.query_params.get('id'))
+            vid = Videos.objects.filter(pk=idd)
+            vid.views += 1
+            vid.save()
 
-            return Videos.objects.filter(pk=idd)
+            return vid
 
         if 'from' in self.request.query_params.keys() and 'to' in self.request.query_params.keys():
             fromm = int(self.request.query_params.get('from'))
@@ -50,27 +55,37 @@ class FindVideoSet(ModelViewSet):
 
             return videos
 
-class GetUserSet(ModelViewSet):
-    serializer_class = UserAccountSerializer
+class UserInfoAPIView(APIView):
     permission_classes = (IsAuthenticated, )
 
-    def get_queryset(self):
-        if self.request.method == 'GET':
-            if 'getme' in self.request.query_params.keys():
-                user_data = UserAccount.objects.filter(account_id=self.request.user.id)
-                if len(user_data) == 0:
-                    UserAccount(account_id=self.request.user.id, nickname=self.request.user.username).save()
+    def get(self, request):
+        if 'getme' in request.GET.keys():
+            user_data = UserAccount.objects.filter(account_id=request.user.id)
+            if user_data.count() == 0:
+                UserAccount.objects.create(account_id=request.user.id, nickname=request.user.username)
 
-                    return UserAccount.objects.filter(account_id=self.request.user.id)
-                else:
-                    return user_data
+                return Response(UserAccountSerializer(UserAccount.objects.filter(account_id=request.user.id), many=True).data)
+            else:
 
-        if self.request.method == 'POST':
-            if 'nickname' in self.request.data.keys():
-                UserAccount.objects.filter(account_id=self.request.user.id).update(nickname=self.request.data.get('nickname')).save()
+                return Response(UserAccountSerializer(user_data, many=True).data)
 
-            if 'description' in self.request.data.keys():
-                UserAccount.objects.filter(account_id=self.request.user.id).update(description=self.request.data.get('description')).save()
+    def post(self, request):
+        user_id = request.user.id
+
+        if 'nickname' in request.data.keys():
+            UserAccount.objects.filter(account_id=user_id).update(nickname=request.data['nickname'])
+
+        if 'description' in request.data.keys():
+            UserAccount.objects.filter(account_id=user_id).update(description=request.data['description'])
+
+        if 'avatar' in request.data.keys():
+            UserAccount.objects.filter(account_id=user_id).update(avatar=request.data['avatar'])
+
+        if 'header' in request.data.keys():
+            UserAccount.objects.filter(account_id=user_id).update(header=request.data['header'])
+
+        return Response({'detail': 'success'})
+
 
 
 # def get_video(request):

@@ -10,4 +10,4 @@ class VideoSerializer(ModelSerializer):
 class UserAccountSerializer(ModelSerializer):
     class Meta:
         model = UserAccount
-        fields = ['account_id', 'nickname', 'header', 'avatar', 'creation_time']
+        fields = ['account_id', 'nickname', 'header', 'avatar', 'creation_time', 'description']
