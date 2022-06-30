@@ -122,10 +122,9 @@ export default {
         'Authorization': token
       }
       axios.post('http://localhost:8000/api/v1/auth/token/logout/', {}, {headers})
-        .then(response => {
-          console.log('ok')
+        .then(response => {          
           localStorage.removeItem('authToken')
-          window.location.reload()
+           window.location.href = '/'
         })
         .catch(error => {
           console.log(error.response)

@@ -26,7 +26,7 @@
     </div>
     <div class="w-1/3 p-5 overflow-auto h overflow-x-hidden">
       <div  v-for="other_video in others" :key="other_video.id" class="pb-5">
-        <router-link :to="{name: 'video', params: {id: other_video.id}}">
+        <a :href="$router.resolve({name: 'video', params: {id: other_video.id}}).href">
           <div class="flex">
             <img :src="`${ other_video.preview}`" :alt="X" class="object-cover aspect-video h-3/5 w-3/5">
             <div class="m-auto w-1/3 font-mono underline">
@@ -48,7 +48,7 @@
             </div>
             {{ other_video.likes }}
           </div>
-        </router-link>
+        </a>
 
       </div>
     </div>

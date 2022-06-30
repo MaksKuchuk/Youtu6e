@@ -2,14 +2,14 @@
   <HeaderView/>
   <AsideView/>
   <main class="md:ml-24 xl:ml-64 pt-14 pb-5">
-    <div class="h-20 sm:h-32 xl:h-52 bg-center bg-cover" :style="{backgroundImage: `url(${require('../assets/image.jpg')})`}"></div>
+    <div class="h-20 sm:h-32 xl:h-52 bg-center bg-cover" :style="{backgroundImage: `url(${this.info.header})`}"></div>
     <div class="px-20 pt-4 bg-grey-600 bg-gray-100">
       <div class="flex flex-col sm:flex-row justify-between items-start md:items-center mb-4">
         <div class="flex md:items-center">
-          <div class="w-16 h-16 rounded-full mr-4 hidden sm:inline" :style="{backgroundImage: `url(${require('../assets/bg.jpg')})`}"></div>
+          <div class="w-16 h-16 rounded-full mr-4 hidden sm:inline" :style="{backgroundImage: `url(${this.info.avatar})`}"></div>
           <div>
             <div class="flex items-center">
-              <span class="text-2xl text-gray-700">Название</span>
+              <span class="text-2xl text-gray-700">{{this.info.nickname}}</span>
             </div>
             <div class="text-sm">5 подписчиков</div>
           </div>
@@ -56,25 +56,45 @@
 </template>
 
 <script>
-import HeaderView from './HeaderView.vue';
-import AsideView from './AsideView.vue';
-import ChannelView from './ChannelView.vue';
-import dayjs from "@/utils/dayjs";
+import HeaderView from './HeaderView.vue'
+import AsideView from './AsideView.vue'
+import ChannelView from './ChannelView.vue'
+import dayjs from "@/utils/dayjs"
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 export default {
   methods: {
     format(data) {
-      return dayjs(data, 'hh:mm DD.MM.YYYY').fromNow(true);
+      return dayjs(data, 'hh:mm DD.MM.YYYY').fromNow(true)
     },
   },
   data() {
     return {
       videos: [],
+      info: [],
     };
   },
   async created() {
-    const response = await fetch('http://localhost:8080/api/v1/mainvideos?amount=10');
-    this.videos = await response.json();
+    const response = await fetch('http://localhost:8080/api/v1/mainvideos/?getuservideo')
+    this.videos = await response.json()
+
+    const token = 'Token ' + localStorage.getItem('authToken')
+    const headers = {
+      'Authorization': token
+    }
+    await axios.get('http://localhost:8080/api/v1/userinfo/?getme=1', {headers})
+      .then(response => {       
+        console.log(response.data[0])
+        this.info = response.data[0]
+        if (!this.info.header)
+          this.info.header = require('../assets/image.jpg')
+        if (!this.info.avatar)
+          this.info.avatar = require('../assets/bg.jpg')
+      }) 
+      .catch(error => {
+        console.log(error.response)
+      })
   },
   components: {
     HeaderView,
