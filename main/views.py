@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from .models import Videos, UserAccount
 from rest_framework.viewsets import ModelViewSet
 from .serializers import VideoSerializer, UserAccountSerializer
-from django.db.models import Q
+from django.db.models import Q, F
 from django.core.files.storage import FileSystemStorage
 
 class VideosViewSet(ModelViewSet):
@@ -20,11 +20,9 @@ class VideosViewSet(ModelViewSet):
 
         if 'id' in self.request.query_params.keys():
             idd = int(self.request.query_params.get('id'))
-            vid = Videos.objects.filter(pk=idd)
-            vid.views += 1
-            vid.save()
+            Videos.objects.filter(pk=idd).update(views=F('views') + 1)
 
-            return vid
+            return Videos.objects.filter(pk=idd)
 
         if 'from' in self.request.query_params.keys() and 'to' in self.request.query_params.keys():
             fromm = int(self.request.query_params.get('from'))
