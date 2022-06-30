@@ -81,6 +81,7 @@ class UserInfoAPIView(APIView):
 
         if 'nickname' in request.data.keys():
             UserAccount.objects.filter(account_id=user_id).update(nickname=request.data['nickname'])
+            Videos.objects.filter(owner_id=user_id).update(author_name=request.data['nickname'])
 
         if 'description' in request.data.keys():
             UserAccount.objects.filter(account_id=user_id).update(description=request.data['description'])
@@ -91,6 +92,7 @@ class UserInfoAPIView(APIView):
             urll = loadTo(name, file, folder)
 
             UserAccount.objects.filter(account_id=user_id).update(avatar=urll)
+            Videos.objects.filter(owner_id=user_id).update(avatar=urll)
 
         if 'header' in request.data.keys():
             name = request.data['header']
