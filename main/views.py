@@ -7,7 +7,10 @@ from .models import Videos, UserAccount
 from rest_framework.viewsets import ModelViewSet
 from .serializers import VideoSerializer, UserAccountSerializer
 from django.db.models import Q, F
-from django.core.files.storage import FileSystemStorage
+from django.core.files import File
+
+from .storages import loadTo
+
 
 class VideosViewSet(ModelViewSet):
     serializer_class = VideoSerializer
@@ -69,6 +72,7 @@ class UserInfoAPIView(APIView):
 
     def post(self, request):
         user_id = request.user.id
+        folder = '\images'
 
         if 'nickname' in request.data.keys():
             UserAccount.objects.filter(account_id=user_id).update(nickname=request.data['nickname'])
@@ -77,18 +81,40 @@ class UserInfoAPIView(APIView):
             UserAccount.objects.filter(account_id=user_id).update(description=request.data['description'])
 
         if 'avatar' in request.data.keys():
-            UserAccount.objects.filter(account_id=user_id).update(avatar=request.data['avatar'])
+            name = request.data['avatar']
+            file = File(request.FILES['avatar'])
+            urll = loadTo(name, file, folder)
+
+            UserAccount.objects.filter(account_id=user_id).update(avatar=urll)
 
         if 'header' in request.data.keys():
-            UserAccount.objects.filter(account_id=user_id).update(header=request.data['header'])
+            name = request.data['header']
+            file = File(request.FILES['header'])
+            urll = loadTo(name, file, folder)
+
+            UserAccount.objects.filter(account_id=user_id).update(header=urll)
 
         return Response({'detail': 'success'})
 
+class VideoAddAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        user_id = request.user.id
+        folder = '\images'
+
+        if 'name' in request.data.keys() and 'preview' in request.data.keys() and 'video' in request.data.keys():
+            name = request.data['name']
+            preview = request.FILES['preview']
+            video = request.FILES['video']
+            preview_url = loadTo(name, preview, folder)
+            video_url = loadTo(name, video, folder)
+
+            if 'description' in request.data.keys():
+                Videos.objects.create(name=name, preview=preview_url, video=video_url,
+                                      owner_id=user_id,  description=request.data['description'])
+            else:
+                Videos.objects.create(name=name, preview=preview_url, video=video_url,
+                                      owner_id=user_id, description='')
 
 
-# def get_video(request):
-#     if request.method == 'POST' and request.FILES['video']:
-#         vid = request.FILES['video']
-#         fs = FileSystemStorage()
-#
-#     return JsonResponse({'detail': 'File is loading'})
