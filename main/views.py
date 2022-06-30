@@ -16,9 +16,6 @@ class VideosViewSet(ModelViewSet):
     serializer_class = VideoSerializer
 
     def get_queryset(self):
-        if 'getuservideo' in self.request.query_params.keys():
-            return Videos.objects.filter(owner_id=self.request.user.id)
-
         if 'neid' in self.request.query_params.keys():
             idd = int(self.request.query_params.get('neid'))
 
@@ -63,15 +60,20 @@ class UserInfoAPIView(APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
-        if 'getme' in request.GET.keys():
-            user_data = UserAccount.objects.filter(account_id=request.user.id)
-            if user_data.count() == 0:
-                UserAccount.objects.create(account_id=request.user.id, nickname=request.user.username)
+        user_id = request.user.id
 
-                return Response(UserAccountSerializer(UserAccount.objects.filter(account_id=request.user.id), many=True).data)
+        if 'getme' in request.GET.keys():
+            user_data = UserAccount.objects.filter(account_id=user_id)
+            if user_data.count() == 0:
+                UserAccount.objects.create(account_id=user_id, nickname=request.user.username)
+
+                return Response(UserAccountSerializer(UserAccount.objects.filter(account_id=user_id), many=True).data)
             else:
 
                 return Response(UserAccountSerializer(user_data, many=True).data)
+
+        if 'getuservideo' in request.GET.keys():
+            return Response(VideoSerializer(Videos.objects.filter(owner_id=user_id), many=True).data)
 
     def post(self, request):
         user_id = request.user.id
@@ -106,8 +108,8 @@ class VideoAddAPIView(APIView):
         user_id = request.user.id
         folder = '\images'
 
-        if UserAccount.objects.filter(account_id=request.user.id).count() == 0:
-            UserAccount.objects.create(account_id=request.user.id, nickname=request.user.username)
+        if UserAccount.objects.filter(account_id=user_id).count() == 0:
+            UserAccount.objects.create(account_id=user_id, nickname=request.user.username)
 
         if 'name' in request.data.keys() and 'preview' in request.data.keys() and 'video' in request.data.keys():
             name = request.data['name']
