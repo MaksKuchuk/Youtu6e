@@ -127,7 +127,12 @@ export default {
           localStorage.removeItem('authToken')
           window.location.reload()
         })
-        .catch(error => console.log(error.response))
+        .catch(error => {
+          console.log(error.response)
+          this.authorized = false
+          localStorage.removeItem('authToken')
+          window.location.href = '/'
+        })
     }
   },
 
