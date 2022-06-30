@@ -11,7 +11,7 @@
             </svg>
             <span class="text-xs">Главная</span>
           </router-link>
-          <router-link :to="`${this.channelLink}`" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
+          <router-link to="/channel/:id" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
             <svg class="w-6 h-6 mb-1 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
@@ -19,7 +19,7 @@
             </svg>
             <span class="text-xs">Мой канал</span>
           </router-link>
-          <router-link :to="`${this.studioLink}`" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
+          <router-link to="/studio" class="flex flex-col items-center px-2 py-5 text-red-300 hover:bg-gray-100">
             <svg class="w-6 h-6 mb-1 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
@@ -43,7 +43,7 @@
             </svg>
             <span>Главная</span>
           </router-link>
-          <router-link :to="`${this.channelLink}`" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+          <router-link to="/channel/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
             <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
@@ -57,7 +57,7 @@
     <section class="py-2 border-b">
       <ul>
         <li>
-          <router-link :to="`${this.studioLink}`" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+          <router-link to="/studio" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
             <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
               <path
@@ -125,7 +125,7 @@
               </svg>
               <span>Главная</span>
             </router-link>
-            <router-link :to="`${this.channelLink}`" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+            <router-link to="/channel/:id" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
               <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -139,7 +139,7 @@
       <section class="py-2 border-b">
         <ul>
           <li>
-            <router-link :to="`${this.studioLink}`" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
+            <router-link to="/studio" class="flex items-center px-6 py-2 text-sm hover:bg-gray-100">
               <svg class="w-6 h-6 mr-4 text-red-200" fill="currentColor" viewBox="0 0 20 20"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -156,21 +156,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      authorized: false,
-      channelLink: '/channel/:id',
-      studioLink: '/studio',
-    }
-  },
 
-  async mounted() {
-    this.authorized = localStorage.getItem('authToken') ? true : false
-    if (!this.authorized) {
-      this.channelLink = '/login'
-      this.studioLink = '/login'
-    } 
-  }
 };
 </script>
 

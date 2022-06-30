@@ -34,7 +34,8 @@
                   type="submit">Зарегистрироваться</button>
         </div>
         <div class="mt-6 text-center text-white">
-          <router-link to="/login" class="underline">Уже есть аккаунт? Войдите.</router-link>
+          <label class="pr-2">Уже есть аккаунт?</label>
+          <router-link to="/login" class="underline">Войдите</router-link>
         </div>
       </form>
     </div>

@@ -6,7 +6,7 @@
     <div class="pt-20 grid-cols-1">
       <div v-for="video in videos" :key="video.id" class="w-20">
         <div class="relative mb-3">
-          <router-link :to="{path: '/video', query: {id: video.id}}">
+          <router-link :to="{name: 'video', query: {id: video.id}}" >
             <img :src="`${ video.preview}`" :alt="X" class="object-cover aspect-video">
           </router-link>
         </div>

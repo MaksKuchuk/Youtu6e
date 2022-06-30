@@ -111,8 +111,8 @@ export default {
   methods: {
     search() {
       if (this.searchInput != null) {
-        localStorage.setItem('searchInput', this.searchInput)
-        window.location.href = '/'
+        localStorage.setItem('searchInput', this.searchInput);
+        window.location.href = '/';
       }
     },
 
@@ -120,19 +120,14 @@ export default {
       const token = 'Token ' + localStorage.getItem('authToken')
       const headers = {
         'Authorization': token
-      }      
+      }
       axios.post('http://localhost:8000/api/v1/auth/token/logout/', {}, {headers})
         .then(response => {
           console.log('ok')
           localStorage.removeItem('authToken')
-          window.location.href = '/'
+          window.location.reload()
         })
-        .catch(error => {
-          console.log(error.response)
-          this.authorized = false
-          localStorage.removeItem('authToken')
-          window.location.href = '/'
-        })
+        .catch(error => console.log(error.response))
     }
   },
 

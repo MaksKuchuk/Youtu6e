@@ -1,7 +1,7 @@
 <template>
   <HeaderView/>
   <main class="flex pt-20 sticky md-20">
-    <div class="w-2/3 p-5 h" >
+    <div class="w-2/3 p-5 h">
       <div v-for="video in videos" :key="video.id" class="max-w-full">
         <video height="3840" width="2160" controls :src="`${video.video}`">
           <track kind="captions"/>
@@ -26,7 +26,7 @@
     </div>
     <div class="w-1/3 p-5 overflow-auto h overflow-x-hidden">
       <div  v-for="other_video in others" :key="other_video.id" class="pb-5">
-        <a :href="$router.resolve({name: 'video', params: {id: other_video.id}}).href">
+        <router-link :to="{name: 'video', params: {id: other_video.id}}">
           <div class="flex">
             <img :src="`${ other_video.preview}`" :alt="X" class="object-cover aspect-video h-3/5 w-3/5">
             <div class="m-auto w-1/3 font-mono underline">
@@ -48,7 +48,7 @@
             </div>
             {{ other_video.likes }}
           </div>
-        </a>
+        </router-link>
 
       </div>
     </div>
