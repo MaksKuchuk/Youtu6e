@@ -35,18 +35,18 @@
           </router-link>
         </div>
         <div class="flex item-start mt-3 group">
-          <img src="https://i.pravatar.cc/1000" class="mr-3 rounded-full w-9 h-9" alt="">
+          <img :src="`${ video.avatar}`" class="mr-3 rounded-full w-9 h-9" alt="">
           <div class="text-sm">
             <router-link :to="{name: 'video', params: {id: video.id}}">
               <span class="font-semibold text-gray-800">{{ video.name }}</span>
             </router-link>
             <div class="mt-1 flex items-center">
-              <span>Channel name</span>
+              <span>{{ video.author_name }}</span>
             </div>
             <div>
               <span>{{ video.views }}</span>
               &middot;
-              <span>{{ format(video.uploadtime) }}</span>
+              <span>{{ format(video.upload_time) }}</span>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ import VueAxios from 'vue-axios'
 export default {
   methods: {
     format(data) {
-      return dayjs(data, 'hh:mm DD.MM.YYYY').fromNow(true)
+      return dayjs(data, 'YYYY-MM-DD hh:mm:ss').fromNow(true)
     },
   },
   data() {
@@ -76,13 +76,23 @@ export default {
     };
   },
   async created() {
-    const response = await fetch('http://localhost:8080/api/v1/mainvideos/?getuservideo=1')
-    this.videos = await response.json()
 
     const token = 'Token ' + localStorage.getItem('authToken')
     const headers = {
       'Authorization': token
     }
+
+    await axios.get('http://localhost:8080/api/v1/userinfo/?getuservideo=1', {headers})
+      .then(response => {
+        this.videos = response.data
+        for (var i = 0; i < this.videos.length; i++) {
+          if (!this.videos[i].avatar)
+            this.videos[i].avatar = require('../assets/bg.jpg')
+        }
+      }).catch(error => {
+        console.log(error.response)
+      })
+
     await axios.get('http://localhost:8080/api/v1/userinfo/?getme=1', {headers})
       .then(response => {       
         console.log(response.data[0])

@@ -9,18 +9,18 @@
         </router-link>
       </div>
       <div class="flex item-start mt-3 group">
-        <img src="https://i.pravatar.cc/1000" class="mr-3 rounded-full w-9 h-9" alt="">
+        <img :src="`${ video.avatar}`" :alt="X" class="mr-3 rounded-full w-9 h-9">
         <div class="text-sm">
           <router-link :to="{name: 'video', params: {id: video.id}}">
             <span class="font-semibold text-gray-800">{{ video.name }}</span>
           </router-link>
           <div class="mt-1 flex items-center">
-            <span>Channel name</span>
+            <span>{{ video.author_name }}</span>
           </div>
           <div>
             <span>{{ video.views }}</span>
             &middot;
-            <span>{{ format(video.uploadtime) }}</span>
+            <span>{{ format(video.upload_time) }}</span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@ function getTime(linktovideo) {
 export default {
   methods: {
     format(data) {
-      return dayjs(data, 'hh:mm DD.MM.YYYY').fromNow(true);
+      return dayjs(data, 'YYYY-MM-DD hh:mm:ss').fromNow(true);
     },
   },
   data() {
@@ -63,6 +63,12 @@ export default {
     const request = 'http://localhost:8080/api/v1/findvideos/?find=' + this.searchInput;
     const response = await fetch(request);
     this.videos = await response.json();
+
+    for (var i = 0; i < this.videos.length; i++) {
+      if (!this.videos[i].avatar)
+        this.videos[i].avatar = require('../assets/bg.jpg')
+    }
+
     if (input)
       localStorage.removeItem('searchInput');
   },
