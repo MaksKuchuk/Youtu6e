@@ -16,6 +16,9 @@ class VideosViewSet(ModelViewSet):
     serializer_class = VideoSerializer
 
     def get_queryset(self):
+        if 'getuservideo' in self.request.query_params.keys():
+            return Videos.objects.filter(owner_id=self.request.user.id)
+
         if 'neid' in self.request.query_params.keys():
             idd = int(self.request.query_params.get('neid'))
 
@@ -105,16 +108,25 @@ class VideoAddAPIView(APIView):
 
         if 'name' in request.data.keys() and 'preview' in request.data.keys() and 'video' in request.data.keys():
             name = request.data['name']
+            preview_name = request.data['preview']
             preview = request.FILES['preview']
+            video_name = request.data['video']
             video = request.FILES['video']
-            preview_url = loadTo(name, preview, folder)
-            video_url = loadTo(name, video, folder)
+            preview_url = loadTo(preview_name, preview, folder)
+            video_url = loadTo(video_name, video, folder)
+
+            avatar = UserAccount.objects.filter(pk=user_id)[0].avatar
+            author_name = UserAccount.objects.filter(pk=user_id)[0].nickname
 
             if 'description' in request.data.keys():
                 Videos.objects.create(name=name, preview=preview_url, video=video_url,
-                                      owner_id=user_id,  description=request.data['description'])
+                                      owner_id=user_id,  description=request.data['description'],
+                                      avatar=avatar, author_name=author_name)
             else:
                 Videos.objects.create(name=name, preview=preview_url, video=video_url,
-                                      owner_id=user_id, description='')
+                                      owner_id=user_id, description='',
+                                      avatar=avatar, author_name=author_name)
+
+        return Response({'detail': 'success'})
 
 

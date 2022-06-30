@@ -5,7 +5,8 @@ from .models import Videos, UserAccount
 class VideoSerializer(ModelSerializer):
     class Meta:
         model = Videos
-        fields = ['id', 'name', 'description', 'views', 'likes', 'dislikes', 'upload_time', 'preview', 'video', 'length', 'owner_id']
+        fields = ['id', 'name', 'description', 'views', 'likes', 'dislikes', 'upload_time', 'preview',
+                  'video', 'length', 'owner_id', 'avatar', 'author_name']
 
 class UserAccountSerializer(ModelSerializer):
     class Meta:

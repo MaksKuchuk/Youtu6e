@@ -12,6 +12,9 @@ class Videos(models.Model):
     owner_id = models.IntegerField(blank=True, null=True)
     upload_time = models.DateTimeField(auto_now_add=True)
 
+    avatar = models.ImageField(upload_to='images/', null=True)
+    author_name = models.CharField(max_length=255)
+
     def __str__(self):
         return self.name
 
