@@ -2,7 +2,7 @@
   <HeaderView/>
   <AsideView/>
   <main class="md:ml-24 xl:ml-64 pt-20 px-5 pb-5 grid max-w-screen-2xl m-auto">
-    <form class="max-w-screen-2xl pt-7">
+    <form class="max-w-screen-2xl pt-7" v-on:submit="submitForm">
       <div class="font-bold uppercase pt-3 pb-3 pl-2 bg-red-100 rounded w-1/2">Добавить видео</div>
       <div class="flex pb-5 pt-5">
         <div class="w-1/2">
@@ -11,7 +11,7 @@
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2">
                 Название
               </label>
-              <input class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="" type="text" v-model="videoName">
+              <input class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="" type="text" v-model="name">
             </div>
           </div>
           <div class="flex justify-start">
@@ -56,6 +56,7 @@ export default {
 
   data() {
     return {
+      name: null,
       message: '',
       progress: 0,
       document: null,
@@ -66,6 +67,11 @@ export default {
   },
 
   methods: {
+    submitForm: function (event){
+      event.preventDefault(),
+      event.target.reset()
+    },
+
     selectFile() {
       this.document = this.$refs.file.files.item(0)
     },
@@ -85,9 +91,9 @@ export default {
       formData.append('preview', this.preview)
       formData.append('description', this.description)
       await axios.post('http://localhost:8080/api/v1/addvideo/', formData, {headers})
-        .catch(error => {
-          console.log(error.response)
-        })
+          .catch(error => {
+            console.log(error.response)
+          })
     }
   },
 
