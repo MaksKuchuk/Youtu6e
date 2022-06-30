@@ -45,6 +45,20 @@ export default {
       this.document = this.$refs.file.files.item(0)
     },
 
+    async upload() {
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': 'Token ' + localStorage.getItem('authToken')
+      }
+      alert(this.document.type)
+      let formData = new FormData()
+      formData.append('header', this.document)
+      await axios.post('http://localhost:8000/api/v1/userinfo/', formData, {headers})
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
   },
   
 };
