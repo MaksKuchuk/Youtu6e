@@ -1,51 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="add video api">
+    <list default="true" id="ea07291f-7cfe-4b20-8830-cc51cb2a7e41" name="Changes" comment="fix video addition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0002_alter_useraccount_account_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0003_alter_useraccount_account_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0004_alter_useraccount_account_id_alter_videos_owner_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0005_alter_videos_dislikes_alter_videos_likes_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/bike.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/bike_nkUOMUA.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/bike_t6uiOTC.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/car.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/car_snwec9M.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/death.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/death_FDltSfO.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/death_XkGPULJ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/honesty.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/justice.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/justice_vRsGOSJ.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/life.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/oblivion.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/oblivion_9ZIx77Z.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/ram.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/ram_yfwaZEI.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/relax.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/samsung.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_80IOJyU.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_FpeHTRe.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_GaYIcym.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_cu5Ruz1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_k8Jd7mI.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_ofB5KNd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/space_zYOzrL0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/star.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/the_cube.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/thor.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/tlou.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/tlou_AHEDO7K.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/tlou_vik28lk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/viking.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/viking_bqv5NbD.mp4" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656579686579</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fix video addition">
+      <created>1656585565286</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1656585565286</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,6 +256,7 @@
     <MESSAGE value="add changeable userAcc" />
     <MESSAGE value="fix views" />
     <MESSAGE value="add video api" />
-    <option name="LAST_COMMIT_MESSAGE" value="add video api" />
+    <MESSAGE value="fix video addition" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix video addition" />
   </component>
 </project>
