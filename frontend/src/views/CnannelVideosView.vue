@@ -82,30 +82,37 @@ export default {
       'Authorization': token
     }
 
+    await axios.get('http://localhost:8000/api/v1/userinfo/?getme=1', {headers})
+      .then(response => {       
+        console.log(response.data[0])
+        this.info = response.data[0]
+       if (this.info.header === null)
+          this.info.header = require('../assets/image.jpg')
+        else
+          this.info.header = 'http://localhost:8000' + this.info.header
+        if (this.info.avatar === null)
+          this.info.avatar = require('../assets/bg.jpg')
+        else
+          this.info.avatar = 'http://localhost:8000' + this.info.avatar    
+      }) 
+      .catch(error => {
+        console.log(error.response)
+      })
+
     await axios.get('http://localhost:8000/api/v1/userinfo/?getuservideo=1', {headers})
       .then(response => {
         this.videos = response.data
         for (var i = 0; i < this.videos.length; i++) {
           this.videos[i].preview = 'http://localhost:8000' + this.videos[i].preview
+          this.videos[i].avatar = this.info.avatar
           if (!this.videos[i].avatar)
             this.videos[i].avatar = require('../assets/bg.jpg')
         }
+        console.log(this.videos[0].preview)
       }).catch(error => {
         console.log(error.response)
       })
-
-    await axios.get('http://localhost:8000/api/v1/userinfo/?getme=1', {headers})
-      .then(response => {       
-        console.log(response.data[0])
-        this.info = response.data[0]
-        if (!this.info.header)
-          this.info.header = require('../assets/image.jpg')
-        if (!this.info.avatar)
-          this.info.avatar = require('../assets/bg.jpg')
-      }) 
-      .catch(error => {
-        console.log(error.response)
-      })
+    
   },
   components: {
     HeaderView,

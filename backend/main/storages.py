@@ -5,4 +5,4 @@ def loadTo(name, file, folder):
     storage.location += folder
 
     name = storage.save(name, file)
-    return folder + '\\' + name
+    return folder + '/' + name

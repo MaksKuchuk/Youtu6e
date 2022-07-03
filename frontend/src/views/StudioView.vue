@@ -117,17 +117,16 @@ export default {
       formData.append('video', this.document)
       formData.append('preview', this.preview)
       formData.append('description', this.description)
-
       this.videoName = ""
       this.$refs.file.value = null
       this.$refs.preview.value = null;
       this.description = ""
-
       await axios.post('http://localhost:8000/api/v1/addvideo/', formData, {headers})
         .catch(error => {
           console.log(error.response)
         })
     },
+
 
     async changeChannelAvatar() {
       if (this.avatar) {
@@ -142,7 +141,7 @@ export default {
           .catch(error => {
             console.log(error.response)
           })
-        }
+      }
     },
 
     async changeChannelHeader() {

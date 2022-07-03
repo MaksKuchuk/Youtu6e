@@ -77,7 +77,7 @@ class UserInfoAPIView(APIView):
 
     def post(self, request):
         user_id = request.user.id
-        folder = '\images'
+        folder = '/images'        
 
         if 'nickname' in request.data.keys():
             UserAccount.objects.filter(account_id=user_id).update(nickname=request.data['nickname'])
@@ -86,9 +86,9 @@ class UserInfoAPIView(APIView):
             UserAccount.objects.filter(account_id=user_id).update(description=request.data['description'])
 
         if 'avatar' in request.data.keys():
-            name = request.data['avatar']
-            file = File(request.FILES['avatar'])
-            urll = loadTo(name, file, folder)
+            name = request.data['avatar']          
+            file = File(request.FILES['avatar'])   
+            urll = loadTo(name, file, folder)         
 
             UserAccount.objects.filter(account_id=user_id).update(avatar=urll)
 
@@ -106,7 +106,8 @@ class VideoAddAPIView(APIView):
 
     def post(self, request):
         user_id = request.user.id
-        folder = '\images'
+        folder = '/images'
+        print('hello?')
 
         if UserAccount.objects.filter(account_id=user_id).count() == 0:
             UserAccount.objects.create(account_id=user_id, nickname=request.user.username)
@@ -119,6 +120,8 @@ class VideoAddAPIView(APIView):
             video = request.FILES['video']
             preview_url = loadTo(preview_name, preview, folder)
             video_url = loadTo(video_name, video, folder)
+            print(preview_url)
+            print(video_url)
 
             avatar = UserAccount.objects.filter(account_id=user_id)[0].avatar
             author_name = UserAccount.objects.filter(account_id=user_id)[0].nickname

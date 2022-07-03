@@ -112,11 +112,15 @@ export default {
     }
     await axios.get('http://localhost:8000/api/v1/userinfo/?getme=1', {headers})
       .then(response => {
-        this.info = response.data[0]
+        this.info = response.data[0]      
         if (!this.info.header)
           this.info.header = require('../assets/image.jpg')
+        else
+          this.info.header = 'http://localhost:8000' + this.info.header
         if (!this.info.avatar)
           this.info.avatar = require('../assets/bg.jpg')
+        else
+          this.info.avatar = 'http://localhost:8000' + this.info.avatar        
       }) 
       .catch(error => {
         console.log(error.response)
